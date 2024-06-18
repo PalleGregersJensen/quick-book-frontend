@@ -19,4 +19,18 @@ async function deleteHotel(id: number) {
     return response;
 }
 
-export { getAllHotels, deleteHotel };
+async function updateHotel(id: number, hotel: any) { 
+    const response = await fetch(`${endpoint}/hotels/${id}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(hotel),
+    });
+    if (!response.ok) {
+        throw new Error("Failed to update hotel");
+    }
+    return response;
+}
+
+export { getAllHotels, deleteHotel, updateHotel };
