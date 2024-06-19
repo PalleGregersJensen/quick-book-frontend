@@ -33,4 +33,18 @@ async function updateHotel(id: number, hotel: any) {
     return response;
 }
 
-export { getAllHotels, deleteHotel, updateHotel };
+async function createHotel(hotel: any) { 
+    const response = await fetch(`${endpoint}/hotels`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(hotel),
+    });
+    if (!response.ok) {
+        throw new Error("Failed to create hotel");
+    }
+    return response;
+}
+
+export { getAllHotels, deleteHotel, updateHotel, createHotel };
